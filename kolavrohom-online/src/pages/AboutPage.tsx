@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AboutPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -19,13 +19,13 @@ const AboutPage: React.FC = () => {
   };
 
   const goToPrevious = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex: number) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex: number) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };

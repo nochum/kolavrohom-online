@@ -55,10 +55,10 @@ const PhonePage: React.FC = () => {
               textAlign: 'center'
             }}
             onMouseEnter={(e) => {
-              e.target.style.backgroundColor = '#c4b49a';
+              (e.target as HTMLButtonElement).style.backgroundColor = '#c4b49a';
             }}
             onMouseLeave={(e) => {
-              e.target.style.backgroundColor = '#d4c4b0';
+              (e.target as HTMLButtonElement).style.backgroundColor = '#d4c4b0';
             }}
             onClick={() => {
               // Handle phone number click - could open dialer or copy to clipboard
