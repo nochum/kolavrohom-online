@@ -33,7 +33,38 @@ export const tractatesByOrder: TractatesByOrder = {
     { hebrew: "מועד קטן", english: "MoedKatan", pages: 29 },
     { hebrew: "חגיגה", english: "Chagigah", pages: 27 }
   ],
-  // ... continue for all orders as needed
+  Nashim: [
+    { hebrew: "יבמות", english: "Yevamos", pages: 122 },
+    { hebrew: "כתובות", english: "Kesubos", pages: 112 },
+    { hebrew: "נדרים", english: "Nedarim", pages: 91 },
+    { hebrew: "נזיר", english: "Nazir", pages: 66 },
+    { hebrew: "סוטה", english: "Sotah", pages: 49 },
+    { hebrew: "גיטין", english: "Gitin", pages: 90 },
+    { hebrew: "קידושין", english: "Kiddushin", pages: 82 }
+  ],
+  Nezikin: [
+    { hebrew: "בבא קמא", english: "BabaKama", pages: 119 },
+    { hebrew: "בבא מציעא", english: "BabaMetzia", pages: 119 },
+    { hebrew: "בבא בתרא", english: "BabaBasra", pages: 176 },
+    { hebrew: "סנהדרין", english: "Sanhedrin", pages: 113 },
+    { hebrew: "מכות", english: "Makot", pages: 24 },
+    { hebrew: "שבועות", english: "Shevuot", pages: 49 },
+    { hebrew: "עבודה זרה", english: "AvodaZarah", pages: 76 },
+    { hebrew: "הוריות", english: "Horayos", pages: 14 }
+  ],
+  Kodashim: [
+    { hebrew: "זבחים", english: "Zevachim", pages: 120 },
+    { hebrew: "מנחות", english: "Menachos", pages: 110 },
+    { hebrew: "חולין", english: "Chulin", pages: 142 },
+    { hebrew: "בכורות", english: "Bechoros", pages: 61 },
+    { hebrew: "ערכין", english: "Erchin", pages: 34 },
+    { hebrew: "תמורה", english: "Temura", pages: 34 },
+    { hebrew: "כריתות", english: "Kerisus", pages: 28 },
+    { hebrew: "מעילה", english: "Meilah", pages: 22 }
+  ],
+  Taharot: [
+    { hebrew: "נדה", english: "Niddah", pages: 73 }
+  ]
 };
 
 // Utility to convert Arabic numbers to Hebrew numerals (for daf/page display)
