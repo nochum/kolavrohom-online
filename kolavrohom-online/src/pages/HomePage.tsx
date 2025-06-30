@@ -33,7 +33,6 @@ const HomePage: React.FC = () => {
 
   return (
     <main>
-      <div className={styles.heading}>Daf Yomi Audio</div>
       <div className={styles.buttonGroup} role="group" aria-label="Daf navigation">
         <div className={styles.buttonWrapper}>
           <DafButton
