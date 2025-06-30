@@ -78,7 +78,7 @@ const FAQsPage: React.FC = () => {
                   className="inline-block"
                 >
                   <img 
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTM1IDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiByeD0iNSIgZmlsbD0iIzAwMDAwMCIvPgo8cGF0aCBkPSJNNjguMzk0IDE5LjIwN0w2MS44NzQgMjQuOTU3TDU1LjM1NCAxOS4yMDdMNjEuODc0IDEzLjQ1N0w2OC4zOTQgMTkuMjA3WiIgZmlsbD0iIzAwRjQxNiIvPgo8cGF0aCBkPSJNNzQuMTQ0IDE5LjIwN0w2OC4zOTQgMTkuMjA3TDYxLjg3NCAyNC45NTdMNjguMzk0IDE5LjIwN0w3NC4xNDQgMTkuMjA3WiIgZmlsbD0iI0ZGNDEwMCIvPgo8cGF0aCBkPSJNNjEuODc0IDI0Ljk1N0w1NS4zNTQgMTkuMjA3TDQ5LjYwNCAxOS4yMDdMNTUuMzU0IDE5LjIwN0w2MS44NzQgMjQuOTU3WiIgZmlsbD0iI0ZGRkEwMCIvPgo8cGF0aCBkPSJNNjEuODc0IDEzLjQ1N0w1NS4zNTQgMTkuMjA3TDQ5LjYwNCAxOS4yMDdMNTUuMzU0IDE5LjIwN0w2MS44NzQgMTMuNDU3WiIgZmlsbD0iIzAwRDBGRiIvPgo8dGV4dCB4PSIxNSIgeT0iMTYiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0iQXJpYWwiPkdFVCBJVCBPTjwvdGV4dD4KPHR5eHQgeD0iMTUiIHk9IjI4IiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJBcmlhbCI+R29vZ2xlIFBsYXk8L3RleHQ+Cjx0ZXh0IHg9IjkwIiB5PSIyNCIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9IkFyaWFsIj5Db21pbmcgU29vbiBvbiBHb29nbGUgUGxheTwvdGV4dD4KPC9zdmc+"
+                    src="https://dafcvwmmdhi2y.cloudfront.net/images/google-play-badge2.png"
                     alt="Get it on Google Play"
                     className="h-12"
                   />
@@ -91,7 +91,7 @@ const FAQsPage: React.FC = () => {
                   className="inline-block"
                 >
                   <img 
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTM1IDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiByeD0iNSIgZmlsbD0iIzAwMDAwMCIvPgo8cGF0aCBkPSJNMjUuMjUgMjAuNUMzMC43NSAyMC41IDM1LjI1IDE2IDM1LjI1IDEwLjVDMzUuMjUgNSAzMC43NSAwLjUgMjUuMjUgMC41QzE5Ljc1IDAuNSAxNS4yNSA1IDE1LjI1IDEwLjVDMTUuMjUgMTYgMTkuNzUgMjAuNSAyNS4yNSAyMC41WiIgZmlsbD0id2hpdGUiLz4KPHR5eHQgeD0iNDUiIHk9IjE2IiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9IkFyaWFsIj5Eb3dubG9hZCBvbiB0aGU8L3RleHQ+Cjx0ZXh0IHg9IjQ1IiB5PSIyOCIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0iQXJpYWwiPkFwcCBTdG9yZTwvdGV4dD4KPC9zdmc+"
+                    src="https://dafcvwmmdhi2y.cloudfront.net/images/apple-app-store.png"
                     alt="Download on the App Store"
                     className="h-12"
                   />
@@ -104,7 +104,7 @@ const FAQsPage: React.FC = () => {
                   className="inline-block"
                 >
                   <img 
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTM1IDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTM1IiBoZWlnaHQ9IjQwIiByeD0iNSIgZmlsbD0iIzFEQjk1NCIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxMCIgZmlsbD0iYmxhY2siLz4KPHN0cm9rZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTBcIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPHR5eHQgeD0iNDAiIHk9IjE2IiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9IkFyaWFsIj5MSVNURU4gT048L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIyOCIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0iQXJpYWwiPlNwb3RpZnk8L3RleHQ+Cjxwb2x5Z29uIHBvaW50cz0iMTgsOCAxOCwzMiAzMCwyMCIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
+                    src="https://dafcvwmmdhi2y.cloudfront.net/images/spotify-badge.png"
                     alt="Listen on Spotify"
                     className="h-12"
                   />
