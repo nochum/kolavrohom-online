@@ -42,19 +42,23 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
     setIsPlaying(true);
     onPlay?.();
   };
+  
   const handlePause = () => {
     setIsPlaying(false);
     onPause?.();
   };
+  
   const handleTimeUpdate = () => {
     const time = audioRef.current?.currentTime || 0;
     setCurrentTime(time);
     onTimeUpdate?.(time);
   };
+  
   const handleLoadedMetadata = () => {
     setDuration(audioRef.current?.duration || 0);
     setLoading(false);
   };
+  
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = Number(e.target.value);
     if (audioRef.current) {
@@ -62,31 +66,38 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
       setCurrentTime(time);
     }
   };
+  
   const handleRewind = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10);
     }
   };
+  
   const handleFastForward = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = Math.min(duration, audioRef.current.currentTime + 10);
     }
   };
+  
   const handleSpeedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const rate = Number(e.target.value);
     setPlaybackRate(rate);
   };
+  
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const vol = Number(e.target.value);
     setVolume(vol);
   };
+  
   const handleDownload = () => {
     window.open(src, '_blank');
   };
+  
   const handleError = () => {
     setError('Audio failed to load. Please check your connection or try again.');
     setLoading(false);
   };
+  
   const handleRetry = () => {
     setError(null);
     setLoading(true);
@@ -98,6 +109,16 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
     const m = Math.floor(t / 60);
     const s = Math.floor(t % 60);
     return `${m}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+    }
   };
 
   return (
@@ -116,31 +137,47 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
         style={{ display: 'none' }}
       />
       {error ? (
-        <div style={{ textAlign: 'center', color: '#b00020', margin: '1.5rem 0' }}>
+        <div className={styles.errorContainer}>
           <div>{error}</div>
-          <button className={styles.button} onClick={handleRetry} aria-label="Retry loading audio">Retry</button>
+          <button className={styles.button} onClick={handleRetry} aria-label="Retry loading audio">
+            Retry
+          </button>
         </div>
       ) : loading ? (
         <div className={styles.spinner} aria-label="Loading audio" />
       ) : (
         <div className={styles.controls}>
-          <button className={styles.button} onClick={handleRewind} aria-label="Rewind 10 seconds">⏪ 10s</button>
+          <button 
+            className={styles.button} 
+            onClick={handleRewind} 
+            aria-label="Rewind 10 seconds"
+            title="Rewind 10 seconds"
+          >
+            ⏪
+          </button>
+          
           <button
-            className={styles.button}
-            onClick={() => {
-              if (audioRef.current) {
-                if (isPlaying) {
-                  audioRef.current.pause();
-                } else {
-                  audioRef.current.play();
-                }
-              }
-            }}
+            className={`${styles.button} ${styles.playButton}`}
+            onClick={togglePlayPause}
             aria-label={isPlaying ? 'Pause' : 'Play'}
+            title={isPlaying ? 'Pause' : 'Play'}
           >
             {isPlaying ? '⏸' : '▶️'}
           </button>
-          <button className={styles.button} onClick={handleFastForward} aria-label="Fast forward 10 seconds">10s ⏩</button>
+          
+          <button 
+            className={styles.button} 
+            onClick={handleFastForward} 
+            aria-label="Fast forward 10 seconds"
+            title="Fast forward 10 seconds"
+          >
+            ⏩
+          </button>
+          
+          <span className={styles.timeDisplay}>
+            {formatTime(currentTime)}
+          </span>
+          
           <input
             className={styles.range}
             type="range"
@@ -149,28 +186,54 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
             value={currentTime}
             onChange={handleSeek}
             aria-label="Seek"
+            title="Seek"
           />
-          <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
-          <select className={styles.select} value={playbackRate} onChange={handleSpeedChange} aria-label="Playback speed">
-            {speeds.map(s => (
-              <option key={s} value={s}>{s}x</option>
-            ))}
-          </select>
-          <button className={styles.button} onClick={handleDownload} aria-label="Download MP3">⬇️</button>
-          <input
-            className={styles.range}
-            type="range"
-            min={0}
-            max={1}
-            step={0.01}
-            value={volume}
-            onChange={handleVolumeChange}
-            aria-label="Volume"
-          />
+          
+          <span className={styles.timeDisplay}>
+            {formatTime(duration)}
+          </span>
+          
+          <div className={styles.rightControls}>
+            <button 
+              className={styles.button} 
+              onClick={handleDownload} 
+              aria-label="Download MP3"
+              title="Download"
+            >
+              ⬇️
+            </button>
+            
+            <select 
+              className={styles.select} 
+              value={playbackRate} 
+              onChange={handleSpeedChange} 
+              aria-label="Playback speed"
+              title="Playback speed"
+            >
+              {speeds.map(s => (
+                <option key={s} value={s}>{s}x</option>
+              ))}
+            </select>
+            
+            <div className={styles.volumeContainer}>
+              <span title="Volume">🔊</span>
+              <input
+                className={styles.volumeRange}
+                type="range"
+                min={0}
+                max={1}
+                step={0.01}
+                value={volume}
+                onChange={handleVolumeChange}
+                aria-label="Volume"
+                title="Volume"
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default AudioPlayer; 
+export default AudioPlayer;
