@@ -36,9 +36,18 @@ const HomePage: React.FC = () => {
       <div className={styles.card}>
         <div className={styles.heading}>Daf Yomi Audio</div>
         <div className={styles.buttonGroup} role="group" aria-label="Daf navigation">
-          <DafButton type="yesterday" label={yesterday?.label || 'Yesterday'} onClick={() => playAudio(yesterday)} />
-          <DafButton type="today" label={today?.label || 'Today'} onClick={() => playAudio(today)} highlighted />
-          <DafButton type="tomorrow" label={tomorrow?.label || 'Tomorrow'} onClick={() => playAudio(tomorrow)} />
+          <div className={styles.buttonWrapper}>
+            <div className={styles.buttonLabel}>Yesterday's Daf</div>
+            <DafButton type="yesterday" label={yesterday?.label || 'Yesterday'} onClick={() => playAudio(yesterday)} />
+          </div>
+          <div className={styles.buttonWrapper}>
+            <div className={styles.buttonLabel}>Today's Daf</div>
+            <DafButton type="today" label={today?.label || 'Today'} onClick={() => playAudio(today)} highlighted />
+          </div>
+          <div className={styles.buttonWrapper}>
+            <div className={styles.buttonLabel}>Tomorrow's Daf</div>
+            <DafButton type="tomorrow" label={tomorrow?.label || 'Tomorrow'} onClick={() => playAudio(tomorrow)} />
+          </div>
         </div>
         {currentAudio && currentLabel && (
           <AudioPlayer src={currentAudio} label={currentLabel} />
