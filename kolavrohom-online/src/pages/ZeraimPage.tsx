@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/theme.module.css';
+import { tractatesByOrder } from '../utils/talmudStructure';
 
 const ZeraimPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,15 +10,11 @@ const ZeraimPage: React.FC = () => {
     navigate('/select'); // Navigate back to SelectDafPage (assuming this is the correct route)
   };
 
-  const handleTractateClick = (tractate: string) => {
-    // Navigate to the specific tractate page
-    navigate(`/select/zeraim/${tractate}`);
+  const handleTractateClick = (tractateEnglish: string) => {
+    navigate(`/select-daf/Zeraim/${tractateEnglish}`);
   };
 
-  // Only Berachot tractate for Daf Yomi
-  const zeraimTractates = [
-    { name: 'ברכות', english: 'berakhot' }
-  ];
+  const zeraimTractates = tractatesByOrder['Zeraim'];
 
   return (
     <main className={styles.pageContainer}>
@@ -46,7 +43,7 @@ const ZeraimPage: React.FC = () => {
               display: 'block'
             }}
           >
-            {tractate.name}
+            {tractate.hebrew}
           </button>
         ))}
       </div>

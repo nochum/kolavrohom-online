@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/theme.module.css';
+import { tractatesByOrder } from '../utils/talmudStructure';
 
 const KodashimPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,22 +10,11 @@ const KodashimPage: React.FC = () => {
     navigate('/select'); // Navigate back to SelectDafPage
   };
 
-  const handleTractateClick = (tractate: string) => {
-    // Navigate to the specific tractate page
-    navigate(`/select/kodashim/${tractate}`);
+  const handleTractateClick = (tractateEnglish: string) => {
+    navigate(`/select-daf/Kodashim/${tractateEnglish}`);
   };
 
-  // Tractates in the Kodashim order for Daf Yomi
-  const kodashimTractates = [
-    { name: 'זבחים', english: 'zevachim' },
-    { name: 'מנחות', english: 'menachot' },
-    { name: 'חולין', english: 'chullin' },
-    { name: 'בכורות', english: 'bekhorot' },
-    { name: 'ערכין', english: 'arakhin' },
-    { name: 'תמורה', english: 'temurah' },
-    { name: 'כריתות', english: 'keritot' },
-    { name: 'מעילה', english: 'meilah' }
-  ];
+  const kodashimTractates = tractatesByOrder['Kodashim'];
 
   return (
     <main className={styles.pageContainer}>
@@ -55,7 +45,7 @@ const KodashimPage: React.FC = () => {
               textAlign: 'center'
             }}
           >
-            {tractate.name}
+            {tractate.hebrew}
           </button>
         ))}
       </div>

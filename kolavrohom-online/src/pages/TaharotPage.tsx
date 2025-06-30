@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/theme.module.css';
+import { tractatesByOrder } from '../utils/talmudStructure';
 
 const TaharotPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,15 +10,11 @@ const TaharotPage: React.FC = () => {
     navigate('/select'); // Navigate back to SelectDafPage
   };
 
-  const handleTractateClick = (tractate: string) => {
-    // Navigate to the specific tractate page
-    navigate(`/select/taharot/${tractate}`);
+  const handleTractateClick = (tractateEnglish: string) => {
+    navigate(`/select-daf/Taharot/${tractateEnglish}`);
   };
 
-  // Only Niddah tractate from Taharot order for Daf Yomi
-  const taharotTractates = [
-    { name: 'נדה', english: 'niddah' }
-  ];
+  const taharotTractates = tractatesByOrder['Taharot'];
 
   return (
     <main className={styles.pageContainer}>
@@ -48,7 +45,7 @@ const TaharotPage: React.FC = () => {
               textAlign: 'center'
             }}
           >
-            {tractate.name}
+            {tractate.hebrew}
           </button>
         ))}
       </div>

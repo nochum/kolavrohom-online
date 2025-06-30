@@ -16,6 +16,7 @@ import NashimPage from './pages/NashimPage';
 import NezikinPage from './pages/NezikinPage';
 import KodashimPage from './pages/KodashimPage';
 import TaharotPage from './pages/TaharotPage';
+import SelectDafPage from './pages/SelectDafPage';
 import styles from './styles/theme.module.css';
 
 const App: React.FC = () => {
@@ -34,6 +35,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/select" element={<SelectSederPage />} />
+              <Route path="/select-daf/:order/:tractate" element={<SelectDafPage />} />
               <Route path="/select/:order" element={<TractateListPage />} />
               <Route path="/select/:order/:tractate" element={<PageSelectionPage />} />
               <Route path="/phone" element={<PhonePage />} />

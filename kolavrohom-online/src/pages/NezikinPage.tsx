@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/theme.module.css';
+import { tractatesByOrder } from '../utils/talmudStructure';
 
 const NezikinPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,22 +10,11 @@ const NezikinPage: React.FC = () => {
     navigate('/select'); // Navigate back to SelectDafPage
   };
 
-  const handleTractateClick = (tractate: string) => {
-    // Navigate to the specific tractate page
-    navigate(`/select/nezikin/${tractate}`);
+  const handleTractateClick = (tractateEnglish: string) => {
+    navigate(`/select-daf/Nezikin/${tractateEnglish}`);
   };
 
-  // Tractates in the Nezikin order for Daf Yomi
-  const nezikinTractates = [
-    { name: 'בבא קמא', english: 'bava-kamma' },
-    { name: 'בבא מציעא', english: 'bava-metzia' },
-    { name: 'בבא בתרא', english: 'bava-batra' },
-    { name: 'סנהדרין', english: 'sanhedrin' },
-    { name: 'מכות', english: 'makkot' },
-    { name: 'שבועות', english: 'shevuot' },
-    { name: 'עבודה זרה', english: 'avodah-zarah' },
-    { name: 'הוריות', english: 'horayot' }
-  ];
+  const nezikinTractates = tractatesByOrder['Nezikin'];
 
   return (
     <main className={styles.pageContainer}>
@@ -55,7 +45,7 @@ const NezikinPage: React.FC = () => {
               textAlign: 'center'
             }}
           >
-            {tractate.name}
+            {tractate.hebrew}
           </button>
         ))}
       </div>

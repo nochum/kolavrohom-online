@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/theme.module.css';
+import { tractatesByOrder } from '../utils/talmudStructure';
 
 const MoedPage: React.FC = () => {
   const navigate = useNavigate();
@@ -9,25 +10,11 @@ const MoedPage: React.FC = () => {
     navigate('/select'); // Navigate back to SelectDafPage
   };
 
-  const handleTractateClick = (tractate: string) => {
-    // Navigate to the specific tractate page
-    navigate(`/select/moed/${tractate}`);
+  const handleTractateClick = (tractateEnglish: string) => {
+    navigate(`/select-daf/Moed/${tractateEnglish}`);
   };
 
-  // Tractates in the Moed order for Daf Yomi
-  const moedTractates = [
-    { name: 'שבת', english: 'shabbat' },
-    { name: 'עירובין', english: 'eruvin' },
-    { name: 'פסחים', english: 'pesachim' },
-    { name: 'יומא', english: 'yoma' },
-    { name: 'סוכה', english: 'sukkah' },
-    { name: 'ביצה', english: 'beitzah' },
-    { name: 'ראש השנה', english: 'rosh-hashanah' },
-    { name: 'תענית', english: 'taanit' },
-    { name: 'מגילה', english: 'megillah' },
-    { name: 'מועד קטן', english: 'moed-katan' },
-    { name: 'חגיגה', english: 'chagigah' }
-  ];
+  const moedTractates = tractatesByOrder['Moed'];
 
   return (
     <main className={styles.pageContainer}>
@@ -58,7 +45,7 @@ const MoedPage: React.FC = () => {
               textAlign: 'center'
             }}
           >
-            {tractate.name}
+            {tractate.hebrew}
           </button>
         ))}
       </div>
