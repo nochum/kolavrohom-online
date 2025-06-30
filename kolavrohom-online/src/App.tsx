@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header, Sidebar } from './components/Layout';
 import ErrorBoundary from './components/Layout/ErrorBoundary';
 import HomePage from './pages/HomePage';
-import SelectDafPage from './pages/SelectDafPage';
+import SelectSederPage from './pages/SelectSederPage';
 import TractateListPage from './pages/TractateListPage';
 import PageSelectionPage from './pages/PageSelectionPage';
 import PhonePage from './pages/PhonePage';
@@ -27,7 +27,7 @@ const App: React.FC = () => {
           <main className={styles.mainContent}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/select" element={<SelectDafPage />} />
+              <Route path="/select" element={<SelectSederPage />} />
               <Route path="/select/:order" element={<TractateListPage />} />
               <Route path="/select/:order/:tractate" element={<PageSelectionPage />} />
               <Route path="/phone" element={<PhonePage />} />
