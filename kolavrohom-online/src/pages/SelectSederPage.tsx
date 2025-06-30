@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SelectSederPage: React.FC = () => {
+  const navigate = useNavigate();
   const sederOptions = [
     'זרעים',
     'מועד', 
@@ -8,6 +10,14 @@ const SelectSederPage: React.FC = () => {
     'נזיקין',
     'קדשים',
     'טהרות'
+  ];
+  const sederRoutes = [
+    '/zeraim',
+    '/moed',
+    '/nashim',
+    '/nezikin',
+    '/kodashim',
+    '/taharot'
   ];
 
   const mainStyle: React.CSSProperties = {
@@ -60,10 +70,7 @@ const SelectSederPage: React.FC = () => {
             style={buttonStyle}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => {
-              // TODO: Handle seder selection
-              console.log(`Selected: ${seder}`);
-            }}
+            onClick={() => navigate(sederRoutes[index])}
           >
             {seder}
           </button>

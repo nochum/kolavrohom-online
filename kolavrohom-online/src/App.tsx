@@ -10,6 +10,12 @@ import PhonePage from './pages/PhonePage';
 import AboutPage from './pages/AboutPage';
 import FAQsPage from './pages/FAQsPage';
 import ContactPage from './pages/ContactPage';
+import ZeraimPage from './pages/ZeraimPage';
+import MoedPage from './pages/MoedPage';
+import NashimPage from './pages/NashimPage';
+import NezikinPage from './pages/NezikinPage';
+import KodashimPage from './pages/KodashimPage';
+import TaharotPage from './pages/TaharotPage';
 import styles from './styles/theme.module.css';
 
 const App: React.FC = () => {
@@ -34,6 +40,12 @@ const App: React.FC = () => {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/faqs" element={<FAQsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/zeraim" element={<ZeraimPage />} />
+              <Route path="/moed" element={<MoedPage />} />
+              <Route path="/nashim" element={<NashimPage />} />
+              <Route path="/nezikin" element={<NezikinPage />} />
+              <Route path="/kodashim" element={<KodashimPage />} />
+              <Route path="/taharot" element={<TaharotPage />} />
             </Routes>
           </main>
         </Router>
