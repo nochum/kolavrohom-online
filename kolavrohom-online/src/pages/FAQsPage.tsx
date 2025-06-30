@@ -80,7 +80,7 @@ const FAQsPage: React.FC = () => {
                   <img 
                     src="https://dafcvwmmdhi2y.cloudfront.net/images/google-play-badge2.png"
                     alt="Get it on Google Play"
-                    className="h-12"
+                    style={{ height: '30px', width: 'auto' }}
                   />
                 </a>
 
@@ -93,7 +93,7 @@ const FAQsPage: React.FC = () => {
                   <img 
                     src="https://dafcvwmmdhi2y.cloudfront.net/images/apple-app-store.png"
                     alt="Download on the App Store"
-                    className="h-12"
+                    style={{ height: '30px', width: 'auto' }}
                   />
                 </a>
 
@@ -106,7 +106,7 @@ const FAQsPage: React.FC = () => {
                   <img 
                     src="https://dafcvwmmdhi2y.cloudfront.net/images/spotify-badge.png"
                     alt="Listen on Spotify"
-                    className="h-12"
+                    style={{ height: '30px', width: 'auto' }}
                   />
                 </a>
               </div>
@@ -118,4 +118,4 @@ const FAQsPage: React.FC = () => {
   );
 };
 
-export default FAQsPage; 
+export default FAQsPage;
