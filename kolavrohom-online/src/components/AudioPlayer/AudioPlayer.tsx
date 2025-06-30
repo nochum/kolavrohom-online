@@ -23,6 +23,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
   const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = playbackRate;
+      audioRef.current.volume = volume;
+    }
+  }, [playbackRate, volume]);
+
+  useEffect(() => {
     setLoading(true);
     setError(null);
     setCurrentTime(0);
@@ -68,16 +75,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
   const handleSpeedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const rate = Number(e.target.value);
     setPlaybackRate(rate);
-    if (audioRef.current) {
-      audioRef.current.playbackRate = rate;
-    }
   };
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const vol = Number(e.target.value);
     setVolume(vol);
-    if (audioRef.current) {
-      audioRef.current.volume = vol;
-    }
   };
   const handleDownload = () => {
     window.open(src, '_blank');
@@ -111,8 +112,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onError={handleError}
-        playbackRate={playbackRate}
-        volume={volume}
         preload="auto"
         style={{ display: 'none' }}
       />

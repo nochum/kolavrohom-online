@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeroBanner } from './index';
-import { MenuIcon, NavLink } from '../Navigation';
+import { NavLink } from '../Navigation';
 import styles from './Header.module.css';
 
 interface HeaderProps {

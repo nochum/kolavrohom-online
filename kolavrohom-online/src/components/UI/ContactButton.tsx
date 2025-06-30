@@ -7,7 +7,7 @@ interface ContactButtonProps {
   text: string;
 }
 
-const ContactButton: React.FC<ContactButtonProps> = ({ type, href, icon, text }) => {
+const ContactButton: React.FC<ContactButtonProps> = ({ type: _type, href, icon, text }) => {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer">
       <span>{icon}</span> {text}

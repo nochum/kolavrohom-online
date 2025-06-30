@@ -7,7 +7,17 @@ export const mishnahOrders = [
   { hebrew: "טהרות", english: "Taharot", folder: "Taharot" }
 ];
 
-export const tractatesByOrder = {
+export interface Tractate {
+  hebrew: string;
+  english: string;
+  pages: number;
+}
+
+export interface TractatesByOrder {
+  [key: string]: Tractate[];
+}
+
+export const tractatesByOrder: TractatesByOrder = {
   Zeraim: [
     { hebrew: "ברכות", english: "Brochos", pages: 64 }
   ],

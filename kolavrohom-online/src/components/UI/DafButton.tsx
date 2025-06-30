@@ -7,7 +7,7 @@ interface DafButtonProps {
   highlighted?: boolean;
 }
 
-const DafButton: React.FC<DafButtonProps> = ({ type, label, onClick, highlighted }) => {
+const DafButton: React.FC<DafButtonProps> = ({ type: _type, label, onClick, highlighted }) => {
   return (
     <button onClick={onClick} style={{ fontWeight: highlighted ? 'bold' : 'normal' }}>
       {label}
