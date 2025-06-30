@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Header, Sidebar } from './components/Layout';
+import ErrorBoundary from './components/Layout/ErrorBoundary';
+import HomePage from './pages/HomePage';
+import SelectDafPage from './pages/SelectDafPage';
+import TractateListPage from './pages/TractateListPage';
+import PageSelectionPage from './pages/PageSelectionPage';
+import PhonePage from './pages/PhonePage';
+import AboutPage from './pages/AboutPage';
+import FAQsPage from './pages/FAQsPage';
+import ContactPage from './pages/ContactPage';
+import styles from './styles/theme.module.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleMenuClick = () => setSidebarOpen(open => !open);
+  const handleSidebarClose = () => setSidebarOpen(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className={styles.appRoot}>
+      <ErrorBoundary>
+        <Router>
+          <Header onMenuClick={handleMenuClick} />
+          <Sidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
+          <main className={styles.mainContent}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/select" element={<SelectDafPage />} />
+              <Route path="/select/:order" element={<TractateListPage />} />
+              <Route path="/select/:order/:tractate" element={<PageSelectionPage />} />
+              <Route path="/phone" element={<PhonePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/faqs" element={<FAQsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </main>
+        </Router>
+      </ErrorBoundary>
+    </div>
+  );
+};
 
-export default App
+export default App; 
