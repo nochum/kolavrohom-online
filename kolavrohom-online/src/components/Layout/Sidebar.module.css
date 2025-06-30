@@ -35,22 +35,4 @@
   font-size: 2rem;
   cursor: pointer;
   margin-bottom: 1.5rem;
-}
-
-@media (min-width: 701px) {
-  .sidebar {
-    position: static;
-    height: auto;
-    width: 220px;
-    box-shadow: none;
-    padding: 1rem 0.5rem;
-    transform: none !important;
-    background: transparent;
-  }
-  .backdrop {
-    display: none;
-  }
-  .closeBtn {
-    display: none;
-  }
 } 
