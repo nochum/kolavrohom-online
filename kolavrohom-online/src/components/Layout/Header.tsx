@@ -1,5 +1,4 @@
 import React from 'react';
-import { HeroBanner } from './index';
 import { NavLink } from '../Navigation';
 import styles from './Header.module.css';
 
@@ -13,20 +12,23 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   return (
     <header className={styles.header}>
       <div className={styles.hero}>
-        <HeroBanner src={HERO_IMAGE} />
+        <img 
+          src={HERO_IMAGE} 
+          alt="Kolavrohom hero" 
+          className={styles.heroImage}
+        />
       </div>
       <nav className={styles.nav} aria-label="Main navigation">
         <button className={styles.menuIcon} onClick={onMenuClick} aria-label="Open menu">
-          {/* MenuIcon is just an emoji here for now */}
           ☰
         </button>
         <div className={styles.navLinks}>
-          <NavLink to="/">Daf Yomi</NavLink>
-          <NavLink to="/select">Select a Daf</NavLink>
+          <NavLink to="/" className={styles.navLink}>Daf Yomi</NavLink>
+          <NavLink to="/select" className={styles.navLink}>Select a Daf</NavLink>
         </div>
       </nav>
     </header>
   );
 };
 
-export default Header; 
+export default Header;
