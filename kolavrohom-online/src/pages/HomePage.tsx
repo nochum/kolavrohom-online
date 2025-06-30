@@ -33,26 +33,34 @@ const HomePage: React.FC = () => {
 
   return (
     <main>
-      <div className={styles.card}>
-        <div className={styles.heading}>Daf Yomi Audio</div>
-        <div className={styles.buttonGroup} role="group" aria-label="Daf navigation">
-          <div className={styles.buttonWrapper}>
-            <div className={styles.buttonLabel}>Yesterday's Daf</div>
-            <DafButton type="yesterday" label={yesterday?.label || 'Yesterday'} onClick={() => playAudio(yesterday)} />
-          </div>
-          <div className={styles.buttonWrapper}>
-            <div className={styles.buttonLabel}>Today's Daf</div>
-            <DafButton type="today" label={today?.label || 'Today'} onClick={() => playAudio(today)} highlighted />
-          </div>
-          <div className={styles.buttonWrapper}>
-            <div className={styles.buttonLabel}>Tomorrow's Daf</div>
-            <DafButton type="tomorrow" label={tomorrow?.label || 'Tomorrow'} onClick={() => playAudio(tomorrow)} />
-          </div>
+      <div className={styles.heading}>Daf Yomi Audio</div>
+      <div className={styles.buttonGroup} role="group" aria-label="Daf navigation">
+        <div className={styles.buttonWrapper}>
+          <DafButton
+            type="yesterday"
+            label={<><span className={styles.buttonLabel}>Yesterday's Daf</span><br />{yesterday?.label || 'Yesterday'}</>}
+            onClick={() => playAudio(yesterday)}
+          />
         </div>
-        {currentAudio && currentLabel && (
-          <AudioPlayer src={currentAudio} label={currentLabel} />
-        )}
+        <div className={styles.buttonWrapper}>
+          <DafButton
+            type="today"
+            label={<><span className={styles.buttonLabel}>Today's Daf</span><br />{today?.label || 'Today'}</>}
+            onClick={() => playAudio(today)}
+            highlighted
+          />
+        </div>
+        <div className={styles.buttonWrapper}>
+          <DafButton
+            type="tomorrow"
+            label={<><span className={styles.buttonLabel}>Tomorrow's Daf</span><br />{tomorrow?.label || 'Tomorrow'}</>}
+            onClick={() => playAudio(tomorrow)}
+          />
+        </div>
       </div>
+      {currentAudio && currentLabel && (
+        <AudioPlayer src={currentAudio} label={currentLabel} />
+      )}
     </main>
   );
 };
