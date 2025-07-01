@@ -9,4 +9,20 @@
   margin: 0 auto;
   max-width: 900px;
   padding: 2rem 1rem;
+}
+
+.button, .backButton, .tractateButton {
+  background: #dbcdc0;
+  color: #544541;
+  border: 2px solid #544541;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button:hover, .backButton:hover, .tractateButton:hover {
+  background: #ceb290;
 } 
