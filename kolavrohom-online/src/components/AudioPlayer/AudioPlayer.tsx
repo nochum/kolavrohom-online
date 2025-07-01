@@ -7,17 +7,21 @@ interface AudioPlayerProps {
   onPlay?: () => void;
   onPause?: () => void;
   onTimeUpdate?: (time: number) => void;
+  onClose?: () => void;
 }
 
 const speeds = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, onTimeUpdate }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ 
+  src, 
+  label, 
+  onPlay, 
+  onPause, 
+  onTimeUpdate, 
+  onClose 
+}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
-  const [volume, setVolume] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
@@ -25,46 +29,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.playbackRate = playbackRate;
-      audioRef.current.volume = volume;
     }
-  }, [playbackRate, volume]);
+  }, [playbackRate]);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    setCurrentTime(0);
-    setDuration(0);
-    setIsPlaying(false);
-    setReloadKey(k => k + 1); // force audio reload
+    setReloadKey(k => k + 1);
   }, [src]);
 
   const handlePlay = () => {
-    setIsPlaying(true);
     onPlay?.();
   };
   
   const handlePause = () => {
-    setIsPlaying(false);
     onPause?.();
   };
   
   const handleTimeUpdate = () => {
     const time = audioRef.current?.currentTime || 0;
-    setCurrentTime(time);
     onTimeUpdate?.(time);
   };
   
   const handleLoadedMetadata = () => {
-    setDuration(audioRef.current?.duration || 0);
     setLoading(false);
-  };
-  
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const time = Number(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = time;
-      setCurrentTime(time);
-    }
   };
   
   const handleRewind = () => {
@@ -75,6 +63,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
   
   const handleFastForward = () => {
     if (audioRef.current) {
+      const duration = audioRef.current.duration || 0;
       audioRef.current.currentTime = Math.min(duration, audioRef.current.currentTime + 10);
     }
   };
@@ -82,11 +71,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
   const handleSpeedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const rate = Number(e.target.value);
     setPlaybackRate(rate);
-  };
-  
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const vol = Number(e.target.value);
-    setVolume(vol);
   };
   
   const handleDownload = () => {
@@ -104,26 +88,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
     setReloadKey(k => k + 1);
   };
 
-  // Format time as mm:ss
-  const formatTime = (t: number) => {
-    const m = Math.floor(t / 60);
-    const s = Math.floor(t % 60);
-    return `${m}:${s.toString().padStart(2, '0')}`;
-  };
-
-  const togglePlayPause = () => {
+  const handleClose = () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
+      audioRef.current.pause();
     }
+    onClose?.();
   };
 
   return (
     <div className={styles.audioPlayerCard}>
-      <div className={styles.label}>{label}</div>
       <audio
         key={reloadKey}
         ref={audioRef}
@@ -136,75 +109,50 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
         preload="auto"
         style={{ display: 'none' }}
       />
+      
       {error ? (
         <div className={styles.errorContainer}>
           <div>{error}</div>
-          <button className={styles.button} onClick={handleRetry} aria-label="Retry loading audio">
+          <button className={styles.controlButton} onClick={handleRetry} aria-label="Retry loading audio">
             Retry
           </button>
         </div>
       ) : loading ? (
         <div className={styles.spinner} aria-label="Loading audio" />
       ) : (
-        <div className={styles.controls}>
-          <button 
-            className={styles.button} 
-            onClick={handleRewind} 
-            aria-label="Rewind 10 seconds"
-            title="Rewind 10 seconds"
-          >
-            ⏪
-          </button>
+        <>
+          <div className={styles.trackInfo}>
+            <div className={styles.trackTitle}>{label}</div>
+          </div>
           
-          <button
-            className={`${styles.button} ${styles.playButton}`}
-            onClick={togglePlayPause}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-            title={isPlaying ? 'Pause' : 'Play'}
-          >
-            {isPlaying ? '⏸' : '▶️'}
-          </button>
+          <div className={styles.audioDiv}>
+            <audio
+              className={styles.nativeAudio}
+              src={src}
+              controls
+              onPlay={handlePlay}
+              onPause={handlePause}
+              onTimeUpdate={handleTimeUpdate}
+              onRateChange={() => {
+                if (audioRef.current) {
+                  audioRef.current.playbackRate = playbackRate;
+                }
+              }}
+            />
+          </div>
           
-          <button 
-            className={styles.button} 
-            onClick={handleFastForward} 
-            aria-label="Fast forward 10 seconds"
-            title="Fast forward 10 seconds"
-          >
-            ⏩
-          </button>
-          
-          <span className={styles.timeDisplay}>
-            {formatTime(currentTime)}
-          </span>
-          
-          <input
-            className={styles.range}
-            type="range"
-            min={0}
-            max={duration}
-            value={currentTime}
-            onChange={handleSeek}
-            aria-label="Seek"
-            title="Seek"
-          />
-          
-          <span className={styles.timeDisplay}>
-            {formatTime(duration)}
-          </span>
-          
-          <div className={styles.rightControls}>
+          <div className={styles.playbackControls}>
             <button 
-              className={styles.button} 
-              onClick={handleDownload} 
-              aria-label="Download MP3"
-              title="Download"
+              className={styles.controlButton} 
+              onClick={handleRewind} 
+              aria-label="Rewind 10 seconds"
+              title="Rewind 10 seconds"
             >
-              ⬇️
+              <img src="https://dafcvwmmdhi2y.cloudfront.net/images/replay-10.png" alt="Replay 10s" />
             </button>
             
             <select 
-              className={styles.select} 
+              className={styles.playbackSelect} 
               value={playbackRate} 
               onChange={handleSpeedChange} 
               aria-label="Playback speed"
@@ -215,22 +163,40 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, onPlay, onPause, 
               ))}
             </select>
             
-            <div className={styles.volumeContainer}>
-              <span title="Volume">🔊</span>
-              <input
-                className={styles.volumeRange}
-                type="range"
-                min={0}
-                max={1}
-                step={0.01}
-                value={volume}
-                onChange={handleVolumeChange}
-                aria-label="Volume"
-                title="Volume"
-              />
-            </div>
+            <button 
+              className={styles.downloadButton} 
+              onClick={handleDownload} 
+              aria-label="Download MP3"
+              title="Download"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+            
+            <button 
+              className={styles.controlButton} 
+              onClick={handleFastForward} 
+              aria-label="Fast forward 10 seconds"
+              title="Fast forward 10 seconds"
+            >
+              <img src="https://dafcvwmmdhi2y.cloudfront.net/images/forward-10.png" alt="Forward 10s" />
+            </button>
           </div>
-        </div>
+          
+          <div className={styles.closeButton}>
+            <button 
+              className={styles.closeButtonInner} 
+              onClick={handleClose}
+              aria-label="Close audio player"
+              title="Close"
+            >
+              ×
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
