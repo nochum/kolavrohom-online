@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const AboutPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
   const images = [
     'https://dafcvwmmdhi2y.cloudfront.net/images/ka-a.jpg',
@@ -30,6 +31,17 @@ const AboutPage: React.FC = () => {
     );
   };
 
+  // Auto-rotate carousel every 3 seconds
+  useEffect(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [images.length]);
+
   return (
     <main className="min-h-screen bg-gray-100 py-8">
       {/* Header */}
@@ -44,7 +56,7 @@ const AboutPage: React.FC = () => {
             <img
               src={images[currentImageIndex]}
               alt={`Rabbi Karp ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover"
+              style={{ width: 285, height: 'auto', display: 'block', margin: '0 auto' }}
             />
             
             {/* Navigation arrows */}
