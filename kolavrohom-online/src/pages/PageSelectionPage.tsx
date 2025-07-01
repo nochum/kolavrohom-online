@@ -41,7 +41,7 @@ const PageSelectionPage: React.FC = () => {
     const page = Number(e.target.value);
     setSelectedPage(page);
     if (selectedTractateObj) {
-      const url = `${AUDIO_BASE}/${selectedTractateObj.english}/${page.toString().padStart(2, '0')}.mp3`;
+      const url = `${AUDIO_BASE}/${selectedTractateObj.english}/${page.toString().padStart(3, '0')}.mp3`;
       setAudioUrl(url);
       setLabel(`${selectedTractateObj.hebrew} דף ${page}`);
     }

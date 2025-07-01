@@ -24,7 +24,7 @@ const SelectDafPage: React.FC = () => {
 
   // Audio URL and label
   const audioUrl = selectedPage
-    ? `${AUDIO_BASE}/${tractateObj.english}/${selectedPage.toString().padStart(2, '0')}.mp3`
+    ? `${AUDIO_BASE}/${tractateObj.english}/${selectedPage.toString().padStart(3, '0')}.mp3`
     : '';
   const label = selectedPage
     ? `${tractateObj.hebrew} דף ${numberToHebrew(selectedPage)}`
